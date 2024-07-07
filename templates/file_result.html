@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파일 검사 결과</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>파일 검사 결과</h1>
+        {% if filename %}
+            <div class="result-section">
+                <p><strong>파일 이름:</strong> {{ filename }}</p>
+                <p><strong>검사 결과:</strong> 히든티어 랜섬웨어 탐지됨</p>
+                <p>상세 정보: ...</p>
+            </div>
+        {% else %}
+            <p>파일이 업로드되지 않았습니다.</p>
+        {% endif %}
+        <div class="center">
+            <a href="{{ url_for('home') }}" class="btn">돌아가기</a>
+        </div>
+    </div>
+</body>
+</html>
