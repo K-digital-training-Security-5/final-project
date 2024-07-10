@@ -11,9 +11,24 @@
         <h1>파일 검사 결과</h1>
         {% if filename %}
             <div class="result-section">
-                <p><strong>파일 이름:</strong> {{ filename }}</p>
-                <p><strong>검사 결과:</strong> 히든티어 랜섬웨어 탐지됨</p>
-                <p>상세 정보: ...</p>
+                <p><strong>파일 이름:</strong> {{ file_info.name }}</p>
+                <p><strong>파일 형식:</strong> {{ file_info.type }}</p>
+                <p><strong>파일 크기:</strong> {{ file_info.size }} bytes</p>
+                <p><strong>파일 생성 시간:</strong> {{ file_info.creation_time|datetime }}</p>
+                <p><strong>파일 수정 시간:</strong> {{ file_info.modification_time|datetime }}</p>
+                <p><strong>파일 접근 시간:</strong> {{ file_info.access_time|datetime }}</p>
+                <p><strong>파일 권한:</strong> {{ file_info.permissions }}</p>
+                <p><strong>파일 해시 값 (MD5):</strong> {{ file_info.hashes.md5 }}</p>
+                <p><strong>파일 해시 값 (SHA-1):</strong> {{ file_info.hashes.sha1 }}</p>
+                <p><strong>파일 해시 값 (SHA-256):</strong> {{ file_info.hashes.sha256 }}</p>
+                {% if results %}
+                    <p><strong>검사 결과:</strong> 히든티어 랜섬웨어 탐지됨</p>
+                    {% for result in results %}
+                        <ul><li>{{ result }}</li></ul>
+                    {% endfor %}
+                {% else %}
+                    <p><strong>검사 결과:</strong> 탐지되지 않았습니다.</p>
+                {% endif %}
             </div>
         {% else %}
             <p>파일이 업로드되지 않았습니다.</p>
